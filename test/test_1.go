@@ -4,8 +4,8 @@ import (
 	"log/slog"
 )
 
-func a(lol *slog.Logger, lol1 slog.Logger) {
+func a(lol *slog.Logger) {
 	lol.Info("error1")
 	lol.Warn("error2")
-	lol.Info("error3")
+	lol.Info("error1")
 }

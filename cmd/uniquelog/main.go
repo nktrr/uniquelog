@@ -3,10 +3,12 @@ package main
 import (
 	"go/ast"
 	"go/token"
+	"golang.org/x/tools/go/analysis/singlechecker"
+	"uniquelog/pkg/analyzer"
 )
 
 func main() {
-	//singlechecker.Main()
+	singlechecker.Main(analyzer.Analyzer)
 
 	//v := visitor{fset: token.NewFileSet()}
 	//arr := []string{"./test/test_1.go"}
