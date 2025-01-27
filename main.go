@@ -2,26 +2,26 @@ package main
 
 import (
 	"go/ast"
-	"go/parser"
 	"go/token"
-	"log"
 )
 
 func main() {
-	v := visitor{fset: token.NewFileSet()}
-	arr := []string{"./test/test_1.go"}
+	//singlechecker.Main()
 
-	for _, filePath := range arr {
-		if filePath == "--" { // to be able to run this like "go run main.go -- input.go"
-			continue
-		}
-
-		f, err := parser.ParseFile(v.fset, filePath, nil, 0)
-		if err != nil {
-			log.Fatalf("Failed to parse file %s: %s", filePath, err)
-		}
-		ast.Walk(&v, f)
-	}
+	//v := visitor{fset: token.NewFileSet()}
+	//arr := []string{"./test/test_1.go"}
+	//
+	//for _, filePath := range arr {
+	//	if filePath == "--" { // to be able to run this like "go run main.go -- input.go"
+	//		continue
+	//	}
+	//
+	//	f, err := parser.ParseFile(v.fset, filePath, nil, 0)
+	//	if err != nil {
+	//		log.Fatalf("Failed to parse file %s: %s", filePath, err)
+	//	}
+	//	ast.Walk(&v, f)
+	//}
 }
 
 type visitor struct {
