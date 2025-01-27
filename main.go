@@ -40,14 +40,20 @@ func (v *visitor) Visit(node ast.Node) ast.Visitor {
 
 	println("func check:", funcDecl.Name.Name)
 	for _, field := range funcDecl.Type.Params.List {
-		fieldType, ok := field.Type.(*ast.StarExpr)
+		var fieldSelectorExpr *ast.SelectorExpr
+		logPointer := false
+		fieldTypePointer, ok := field.Type.(*ast.StarExpr)
 		if !ok {
-			continue
-		}
-
-		fieldSelectorExpr, ok := fieldType.X.(*ast.SelectorExpr)
-		if !ok {
-			continue
+			fieldSelectorExpr, ok = field.Type.(*ast.SelectorExpr)
+			if !ok {
+				continue
+			}
+		} else {
+			fieldSelectorExpr, ok = fieldTypePointer.X.(*ast.SelectorExpr)
+			if !ok {
+				continue
+			}
+			logPointer = true
 		}
 
 		fieldIdentPackage, ok := fieldSelectorExpr.X.(*ast.Ident)
@@ -58,6 +64,8 @@ func (v *visitor) Visit(node ast.Node) ast.Visitor {
 		println("logger name:", field.Names[0].Name)
 		println("logger package:", fieldIdentPackage.Name)
 		println("logger name:", fieldSelectorExpr.Sel.Name)
+		println("is pointer:", logPointer)
+		println()
 	}
 
 	//var buf bytes.Buffer
