@@ -23,6 +23,7 @@ type LogOutput struct {
 	File     *token.File
 }
 
+// TODO parse struct, check log existence, check func receiver
 func run(pass *analysis.Pass) (interface{}, error) {
 	// TODO check constant handling
 	// TODO add to vars, add prebuild loggers, add different loggers support
